@@ -27,11 +27,6 @@
                 <Property name="label" type="java.lang.String" value="Reserva"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
-              <Properties>
-                <Property name="label" type="java.lang.String" value="Prestamo"/>
-              </Properties>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
@@ -42,6 +37,11 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
                 <Property name="label" type="java.lang.String" value="Consulta"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+              <Properties>
+                <Property name="label" type="java.lang.String" value="Prestamo"/>
               </Properties>
             </MenuItem>
           </SubComponents>
