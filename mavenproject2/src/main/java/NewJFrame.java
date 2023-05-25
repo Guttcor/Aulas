@@ -6,14 +6,14 @@
 /**
  *
  * @author Gael Mendoza
- */import java.sql.Connection;
+ */     import java.sql.Connection;
         import java.sql.DriverManager;
         import java.sql.PreparedStatement;
         import java.sql.ResultSet;
         import java.sql.ResultSetMetaData;
         import java.sql.SQLException;
-
-        import javax.swing.table.DefaultTableColumnModel;
+ 
+        import javax.swing.table.DefaultTableModel;
         import javax.swing.JOptionPane;
 public class NewJFrame extends javax.swing.JFrame {
 
@@ -23,12 +23,11 @@ public class NewJFrame extends javax.swing.JFrame {
     
     DefaultTableModel model;
     Connection conectar;
-    String path="jdbc:aqui va la ruta de la base de datos";
+    String path="jdbc:sqlite:C:\\Users\\Kevin\\Documents\\Aulas\\Prueba_2.db";
     public NewJFrame() {
         
-        
-
         initComponents();
+        model=(DefaultTableModel)this.jTable1.getModel();
     }
 
     /**
@@ -147,12 +146,12 @@ if(conectar !=null){
     JOptionPane.showMessageDialog(this,"Conectados");
     ResultSet resul=null;
     model.setRowCount(0);
-    PreparedStatement st=conectar.prepareStatement("select id,nombre from aqui poner la info de sql broser");
+    PreparedStatement st=conectar.prepareStatement("Select ID, Nombre from Conexiones");
     resul=st.executeQuery();
     
     while (resul.next()){
         
-        model.addRow(new Objec[](resul.getInt("ID"),resul.getString("nombre")));
+        model.addRow(new Object[]{resul.getInt("ID"),resul.getString("Nombre")});
     }
     conectar.close();
 }
@@ -161,8 +160,9 @@ if(conectar !=null){
     }//GEN-LAST:event_jButton1ActionPerformed
 catch(Exception x){
     
-    JOpcionPane.showMessageDialog(this,"error"+getMessage()toString());
+    JOptionPane.showMessageDialog(this,"error"+ x.getMessage().toString());
 }
+    }
     /**
      * @param args the command line arguments
      */

@@ -29,10 +29,10 @@ public class Menu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,8 +49,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem2.setLabel("Bajas");
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setLabel("Reserva");
-        jMenu1.add(jMenuItem3);
+        jMenuItem4.setLabel("Prestamo");
+        jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
@@ -59,8 +59,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem5.setLabel("Consulta");
         jMenu2.add(jMenuItem5);
 
-        jMenuItem4.setLabel("Prestamo");
-        jMenu2.add(jMenuItem4);
+        jMenuItem3.setLabel("Reserva");
+        jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
 

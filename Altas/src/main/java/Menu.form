@@ -22,9 +22,9 @@
                 <Property name="label" type="java.lang.String" value="Bajas"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
-                <Property name="label" type="java.lang.String" value="Reserva"/>
+                <Property name="label" type="java.lang.String" value="Prestamo"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -39,9 +39,9 @@
                 <Property name="label" type="java.lang.String" value="Consulta"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
-                <Property name="label" type="java.lang.String" value="Prestamo"/>
+                <Property name="label" type="java.lang.String" value="Reserva"/>
               </Properties>
             </MenuItem>
           </SubComponents>
