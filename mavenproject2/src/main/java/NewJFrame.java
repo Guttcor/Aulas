@@ -56,6 +56,12 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -77,6 +83,11 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("Altas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Bajas");
 
@@ -139,6 +150,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+// TODO add your handling code here:
 try{
 conectar=DriverManager.getConnection(path);
 if(conectar !=null){
@@ -155,14 +167,74 @@ if(conectar !=null){
     }
     conectar.close();
 }
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+}
 catch(Exception x){
     
     JOptionPane.showMessageDialog(this,"error"+ x.getMessage().toString());
 }
-    }
+
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+             try{
+            //Class.forName("org.sqlite.JDBC");
+             conectar = DriverManager.getConnection(path);
+             if(conectar != null){
+                   String sql = "insert into Conexiones (ID, Nombre) values(?,?)";
+                   PreparedStatement st=conectar.prepareStatement(sql);
+                   
+                   st.setInt(1, Integer.parseInt(this.jTextField1.getText()));
+                   st.setString(2, this.jTextField2.getText());
+                   
+                   st.execute();
+                   
+                   ResultSet resul= null;
+                  model.setRowCount(0);
+                  st=conectar.prepareStatement("Select ID, Nombre from Conexiones");
+                  resul = st.executeQuery();
+                 
+                  while (resul.next()){
+                      model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Nombre")});
+                  }
+                   conectar.close();
+             }
+         }
+         catch (Exception x){
+             JOptionPane.showMessageDialog(this, "error"+ x.getMessage().toString());
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+               try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new NewJFrame().setVisible(true);
+            }
+        });         
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
