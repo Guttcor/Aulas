@@ -8,7 +8,7 @@ package com.mycompany.altas;
  *
  * @author Gael Mendoza
  */
-public class Bajas {
+public class Ven_altas {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
