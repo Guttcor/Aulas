@@ -1,0 +1,22 @@
+-encoding
+'UTF-8'
+-protected
+-source
+'20'
+-sourcepath
+'C:/Users/Kevin/Desktop/equipo de aulas/mavenproject2/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Kevin/Desktop/equipo de aulas/mavenproject2/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'mavenproject2 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'mavenproject2 1.0-SNAPSHOT API'
