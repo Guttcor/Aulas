@@ -38,7 +38,7 @@ public class Auditorio {
             //Class.forName("org.sqlite.JDBC");
              conectar = DriverManager.getConnection(path);
              if(conectar != null){
-                   String sql = "insert into Auditorio (ID, Tipo, Horario, Capacidad, Disponibilidad) values(?,?)";
+                   String sql = "insert into Auditorio (ID, Tipo, Horario, Capacidad, Disponibilidad) values(?,?,?,?,?)";
                    PreparedStatement st=conectar.prepareStatement(sql);
                    
                    st.setInt(1,ID) ;
@@ -60,7 +60,6 @@ public class Auditorio {
                 }
             }
                     catch(Exception x){
-                  
                     }
          
     };    

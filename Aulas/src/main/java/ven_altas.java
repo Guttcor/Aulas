@@ -6,15 +6,27 @@
 /**
  *
  * @author Gael Mendoza
- */
+ */     import java.sql.Connection;
+        import java.sql.DriverManager;
+        import java.sql.PreparedStatement;
+        import java.sql.ResultSet;
+        import java.sql.ResultSetMetaData;
+        import java.sql.SQLException;
+ 
+        import javax.swing.table.DefaultTableModel;
+        import javax.swing.JOptionPane;
 import javax.swing.JOptionPane;
 public class ven_altas extends javax.swing.JFrame {
-
+    DefaultTableModel model;
+    Connection conectar;
+    String path="jdbc:sqlite:C:\\Users\\Kevin\\Documents\\Aulas\\DATA_BASE_BIBLIOTECA_1MM11.db";
+    
     /**
      * Creates new form ven_altas
      */
     public ven_altas() {
         initComponents();
+        model=(DefaultTableModel)this.jTable.getModel();
     }
 
     /**
@@ -49,6 +61,8 @@ public class ven_altas extends javax.swing.JFrame {
         jCheckBox10 = new javax.swing.JCheckBox();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
 
         jLabel6.setText("jLabel6");
 
@@ -224,6 +238,18 @@ public class ven_altas extends javax.swing.JFrame {
             }
         });
 
+        jTable.setBackground(new java.awt.Color(212, 193, 156));
+        jTable.setBorder(new javax.swing.border.MatteBorder(null));
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Tipo", "Horario", "Disponibilidad", "Capacidad"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -240,41 +266,46 @@ public class ven_altas extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField2)
-                                .addComponent(cmbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jCheckBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(13, 13, 13))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jCheckBox5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jCheckBox4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jCheckBox9))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jCheckBox6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jCheckBox10)))
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
                                 .addComponent(jButton3)
                                 .addGap(42, 42, 42)
                                 .addComponent(jButton2)
-                                .addGap(44, 44, 44)))
-                        .addGap(182, 182, 182))
+                                .addGap(226, 226, 226))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextField2)
+                                    .addComponent(cmbtipo, 0, 568, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jCheckBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(13, 13, 13))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jCheckBox5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jCheckBox4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jCheckBox9))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jCheckBox6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jCheckBox10)))
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,10 +343,12 @@ public class ven_altas extends javax.swing.JFrame {
                             .addComponent(jCheckBox9)
                             .addComponent(jCheckBox8))))
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addGap(57, 57, 57))
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -373,20 +406,43 @@ public class ven_altas extends javax.swing.JFrame {
         int w=Integer.parseInt(jTextField2.getText());
         String s;
         s=cmbtipo.getSelectedItem().toString();
-        if (s=="Aula individual"){
-            Cubiculo obj = new Cubiculo(m,s,1,"Disponible");
-            obj.registrar();
-//            JOptionPane.showMessageDialog(this,"Proceso finalizado");
+       if (s=="Aula individual"){
+             JOptionPane.showMessageDialog(this,"Proceso finalizado");
                 this.setVisible(false);
             }else if(s=="Aula grupal"){
                 Grupal obj = new Grupal(m,s,1,"Disponible",w);
                 obj.registrar();
                 JOptionPane.showMessageDialog(this,"Proceso finalizado");
                 this.setVisible(false);
-            }else if(s=="Aditorio"){
-                Auditorio obj = new Auditorio(m,s,1,"Disponible",w);
-                obj.registrar();
-                 JOptionPane.showMessageDialog(this,"Proceso finalizado");
+            }else if(s=="Auditorio"){
+                 try{
+                    //Class.forName("org.sqlite.JDBC");
+                     conectar = DriverManager.getConnection(path);
+                     if(conectar != null){
+                           String sql = "insert into Auditorio (ID, Tipo, Horario, Disponibilidad, Capacidad) values(?,?,?,?,?)";
+                           PreparedStatement st=conectar.prepareStatement(sql);
+
+                           st.setInt(1,m) ;
+                           st.setString(2, s);
+                           st.setInt(3,7) ;
+                           st.setString(4,"Disponible");
+                           st.setInt(5,w) ;
+                           
+                           st.execute();
+
+                           ResultSet resul= null;
+                          model.setRowCount(1);
+                          st=conectar.prepareStatement("Select ID, Tipo, Horario, Disponibilidad, Capacidad from Auditorio");
+                          resul = st.executeQuery();
+
+                          while (resul.next()){
+                              model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getString("Disponibilidad"),resul.getInt("Capacidad")});
+                          }
+                           conectar.close();
+                        }
+                    }
+                    catch(Exception x){
+                    }
                 this.setVisible(false);
             }else if(s=="Audiovisual"){
                 Audiovisual obj = new Audiovisual(m,s,1,"Disponible",w);
@@ -396,7 +452,7 @@ public class ven_altas extends javax.swing.JFrame {
             }else{
                 
                
-            }      
+            }    
     }else{
     }
         
@@ -506,6 +562,8 @@ public class ven_altas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables

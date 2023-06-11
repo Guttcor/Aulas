@@ -38,23 +38,23 @@ public class Cubiculo {
             //Class.forName("org.sqlite.JDBC");
              conectar = DriverManager.getConnection(path);
              if(conectar != null){
-                   String sql = "insert into Cubiculo (ID, Tipo, Horario, Capacidad, Disponibilidad) values(?,?)";
+                   String sql = "insert into Cubiculo (ID, Tipo, Horario, Disponibilidad) values(?,?,?,?)";
                    PreparedStatement st=conectar.prepareStatement(sql);
                    
                    st.setInt(1,ID) ;
                    st.setString(2, tipo);
                    st.setInt(3,hora) ;
                
-                   st.setString(5,disp);
+                   st.setString(4,disp);
                    st.execute();
                    
                    ResultSet resul= null;
                   model.setRowCount(0);
-                  st=conectar.prepareStatement("Select ID, Tipo, Horario, Capacidad, Disponibilidad from Cubiculo");
+                  st=conectar.prepareStatement("Select ID, Tipo, Horario, Disponibilidad from Cubiculo");
                   resul = st.executeQuery();
                  
                   while (resul.next()){
-                      model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getInt("Capacidad"),resul.getString("Capacidad")});
+                      model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getString("Disponibilidad")});
                   }
                    conectar.close();
                 }
