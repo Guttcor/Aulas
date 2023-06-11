@@ -28,6 +28,7 @@ public class ven_bajas extends javax.swing.JFrame {
      */
     public ven_bajas() {
         initComponents();
+        model=(DefaultTableModel)this.jTable.getModel();
     }
 
     /**
