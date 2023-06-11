@@ -142,7 +142,7 @@ public class ven_bajas extends javax.swing.JFrame {
         cmbtipo.setBackground(new java.awt.Color(212, 193, 156));
         cmbtipo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         cmbtipo.setForeground(new java.awt.Color(255, 255, 255));
-        cmbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aula individual", "Aula grupal ", "Audiovisual", "Auditorio" }));
+        cmbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Grupal ", "Audiovisual", "Auditorio" }));
         cmbtipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         cmbtipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +201,7 @@ public class ven_bajas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton3))
-                .addGap(183, 183, 183))
+                .addGap(18, 18, 18))
         );
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Kevin\\Desktop\\equipo de aulas\\Imagen1.png")); // NOI18N
@@ -217,7 +217,7 @@ public class ven_bajas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(200, 200, 200))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +252,7 @@ public class ven_bajas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String s=cmbtipo.getSelectedItem().toString(); 
-        if (s=="Aula individual"){
+        if (s=="Individual"){
            
              try{
                     conectar=DriverManager.getConnection(path);
@@ -261,11 +261,11 @@ public class ven_bajas extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this,"Se mostrará la informacion del aula");
                         ResultSet resul=null;
                         model.setRowCount(0);
-                        PreparedStatement st=conectar.prepareStatement("Select ID, Tipo, Horario, Disponibilidad from Auditorio");
+                        PreparedStatement st=conectar.prepareStatement("Select ID, Tipo, Horario, Disponibilidad from Cubiculo");
                         resul = st.executeQuery();
 
                         while (resul.next()){
-                            model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getInt("Disponibilidad")});
+                             model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getString("Disponibilidad")});
                         }
                         conectar.close();
                     }
@@ -274,7 +274,7 @@ public class ven_bajas extends javax.swing.JFrame {
 
                         JOptionPane.showMessageDialog(this,"Error "+ x.getMessage().toString());
                     }
-            }else if(s=="Aula grupal"){
+            }else if(s=="Grupal"){
                 try{
                     conectar=DriverManager.getConnection(path);
                     if(conectar !=null){
@@ -282,11 +282,11 @@ public class ven_bajas extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this,"Se mostrará la informacion del aula");
                         ResultSet resul=null;
                         model.setRowCount(0);
-                        PreparedStatement st=conectar.prepareStatement("Select ID, Tipo, Horario, Capacidad, Disponibilidad from Sala_grupal");
+                        PreparedStatement st=conectar.prepareStatement("Select ID, Tipo, Horario, Disponibilidad, Capacidad from Sala_grupal");
                         resul = st.executeQuery();
 
                         while (resul.next()){
-                            model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getInt("Disponibilidad"),resul.getString("Capacidad")});
+                            model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getString("Disponibilidad"),resul.getInt("Capacidad")});
                         }
                         conectar.close();
                     }
@@ -324,11 +324,11 @@ public class ven_bajas extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this,"Se mostrará la informacion del aula");
                         ResultSet resul=null;
                         model.setRowCount(0);
-                        PreparedStatement st=conectar.prepareStatement("Select ID, Tipo, Horario, Capacidad, Disponibilidad from Audiovisual");
+                        PreparedStatement st=conectar.prepareStatement("Select ID, Tipo, Horario, Disponibilidad, Capacidad from Audiovisual");
                         resul = st.executeQuery();
 
                         while (resul.next()){
-                            model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getInt("Disponibilidad"),resul.getString("Capacidad")});
+                           model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getString("Disponibilidad"),resul.getInt("Capacidad")});
                         }
                         conectar.close();
                     }
