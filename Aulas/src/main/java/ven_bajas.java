@@ -370,11 +370,12 @@ public class ven_bajas extends javax.swing.JFrame {
                  return;
              }
 
-             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar esta fila?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de dar de baja esta aula?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
              if (confirmacion == JOptionPane.YES_OPTION) {
                  int id = (int) model .getValueAt(filaSeleccionada, 0);
-
+                String s=cmbtipo.getSelectedItem().toString();
+                if (s=="Individual"){
                  try {
                      String query = "DELETE FROM cubiculo WHERE ID = ?";
                      PreparedStatement stmt = conectar.prepareStatement(query);
@@ -384,10 +385,51 @@ public class ven_bajas extends javax.swing.JFrame {
                      model.removeRow(filaSeleccionada);
 
                      stmt.close();
-                     JOptionPane.showMessageDialog(null, "Fila eliminada correctamente");
-                 } catch (SQLException ex) {
+                    } catch (SQLException ex) {
                      JOptionPane.showMessageDialog(null, "Error al eliminar la fila: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                 }
+                     }
+             }else if(s=="Grupal"){
+                    try {
+                     String query = "DELETE FROM Sala_grupal WHERE ID = ?";
+                     PreparedStatement stmt = conectar.prepareStatement(query);
+                     stmt.setInt(1, id);
+                     stmt.executeUpdate();
+
+                     model.removeRow(filaSeleccionada);
+
+                     stmt.close();
+                    } catch (SQLException ex) {
+                     JOptionPane.showMessageDialog(null, "Error al eliminar la fila: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+             }else if(s=="Auditorio"){
+                    try {
+                     String query = "DELETE FROM Auditorio WHERE ID = ?";
+                     PreparedStatement stmt = conectar.prepareStatement(query);
+                     stmt.setInt(1, id);
+                     stmt.executeUpdate();
+
+                     model.removeRow(filaSeleccionada);
+
+                     stmt.close();
+                    } catch (SQLException ex) {
+                     JOptionPane.showMessageDialog(null, "Error al eliminar la fila: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+             }else if(s=="Audiovisual"){
+                 try {
+                     String query = "DELETE FROM Audiovisual WHERE ID = ?";
+                     PreparedStatement stmt = conectar.prepareStatement(query);
+                     stmt.setInt(1, id);
+                     stmt.executeUpdate();
+
+                     model.removeRow(filaSeleccionada);
+
+                     stmt.close();
+                    } catch (SQLException ex) {
+                     JOptionPane.showMessageDialog(null, "Error al eliminar la fila: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+             }
+            JOptionPane.showMessageDialog(null, "Aula dada de baja");
+                    
              }
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -453,8 +495,7 @@ public class ven_bajas extends javax.swing.JFrame {
 
                         while (resul.next()){
                             model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getString("Disponibilidad"),resul.getInt("Capacidad")});
-                        }
-                       
+                        }  
                     }
                     }
                     catch(Exception x){

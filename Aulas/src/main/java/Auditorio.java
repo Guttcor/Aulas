@@ -35,33 +35,32 @@ public class Auditorio {
     };
     void registrar(){
        try{
-                    //Class.forName("org.sqlite.JDBC");
-                     conectar = DriverManager.getConnection(path);
-                     if(conectar != null){
-                           String sql = "insert into Auditorio (ID, Tipo, Horario, Disponibilidad, Capacidad) values(?,?,?,?,?)";
-                           PreparedStatement st=conectar.prepareStatement(sql);
+            //Class.forName("org.sqlite.JDBC");
+             conectar = DriverManager.getConnection(path);
+             if(conectar != null){
+                   String sql = "insert into Auditorio (ID, Tipo, Horario, Disponibilidad, Capacidad) values(?,?,?,?,?)";
+                   PreparedStatement st=conectar.prepareStatement(sql);
 
-                           st.setInt(1,ID) ;
-                           st.setString(2,tipo );
-                           st.setInt(3,hora) ;
-                           st.setString(4,disp);
-                           st.setInt(5,cap) ;
-                           
-                           st.execute();
+                   st.setInt(1,ID) ;
+                   st.setString(2,tipo );
+                   st.setInt(3,hora) ;
+                   st.setString(4,disp);
+                   st.setInt(5,cap) ;
 
-                           ResultSet resul= null;
-                          model.setRowCount(1);
-                          st=conectar.prepareStatement("Select ID, Tipo, Horario, Disponibilidad, Capacidad from Auditorio");
-                          resul = st.executeQuery();
+                   st.execute();
 
-                          while (resul.next()){
-                              model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getString("Disponibilidad"),resul.getInt("Capacidad")});
-                          }
-                           conectar.close();
-                        }
-                    }
-                    catch(Exception x){
-                    }
-         
-    };    
+                   ResultSet resul= null;
+                  model.setRowCount(1);
+                  st=conectar.prepareStatement("Select ID, Tipo, Horario, Disponibilidad, Capacidad from Auditorio");
+                  resul = st.executeQuery();
+
+                  while (resul.next()){
+                      model.addRow(new Object[]{resul.getInt("ID"), resul.getString("Tipo"),resul.getInt("Horario"),resul.getString("Disponibilidad"),resul.getInt("Capacidad")});
+                  }
+                   conectar.close();
+                }
+            }
+            catch(Exception x){
+            }
+        };    
 }

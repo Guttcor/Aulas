@@ -86,7 +86,7 @@ public class ven_altas extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Kevin\\Desktop\\equipo de aulas\\Imagen1.png")); // NOI18N
         jLabel7.setText("jLabel7");
 
-        jPanel2.setBackground(new java.awt.Color(153, 0, 51));
+        jPanel2.setBackground(new java.awt.Color(157, 36, 73));
 
         jLabel4.setBackground(new java.awt.Color(179, 142, 93));
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -414,24 +414,20 @@ public class ven_altas extends javax.swing.JFrame {
             if (s=="Individual"){
                 Cubiculo obj = new Cubiculo(m,s,a,"Disponible");
                 obj.registrar();
-                JOptionPane.showMessageDialog(this,"Aula dada de alta");
-                jTextField1.setText("");
-                jTextField2.setText("");
             }else if(s=="Grupal"){
                 Grupal obj = new Grupal(m,s,a,"Disponible",w);
                 obj.registrar();
-                JOptionPane.showMessageDialog(this,"Aula dada de alta");
             }else if(s=="Auditorio"){
                 Auditorio obj = new Auditorio(m,s,a,"Disponible",w);
                 obj.registrar();
-                JOptionPane.showMessageDialog(this,"Aula dada de alta");
             }else if(s=="Audiovisual"){
                 Audiovisual obj = new Audiovisual(m,s,a,"Disponible",w);
                 obj.registrar();
-                JOptionPane.showMessageDialog(this,"Aula dada de alta");
             }else{
-
             }
+            JOptionPane.showMessageDialog(this,"Aula dada de alta");
+                jTextField1.setText("");
+                jTextField2.setText("");
         }else{
         }
 

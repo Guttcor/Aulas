@@ -9,6 +9,7 @@
  */
         import java.sql.Connection;
         import java.sql.DriverManager;
+        
         import java.sql.PreparedStatement;
         import java.sql.ResultSet;
         import java.sql.ResultSetMetaData;
@@ -50,7 +51,7 @@ public class Grupal {
                    st.execute();
                    
                    ResultSet resul= null;
-                  model.setRowCount(0);
+                  model.setRowCount(1);
                   st=conectar.prepareStatement("Select ID, Tipo, Horario, Disponibilidad, Capacidad from Sala_grupal");
                   resul = st.executeQuery();
                  
@@ -61,6 +62,7 @@ public class Grupal {
                 }
             }
      catch(Exception x){
+         x.printStackTrace();
                     }
     }; 
 }
